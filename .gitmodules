@@ -1,0 +1,7 @@
+[submodule "common/lib/glfw"]
+	path = common/lib/glfw
+	url = https://github.com/GLFW/GLFW
+[submodule "common/lib/glad"]
+	path = common/lib/glad
+	url = https://github.com/Dav1dde/glad
+	branch = glad2

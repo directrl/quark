@@ -43,8 +43,8 @@ bld/
 publish/
 
 # build directory
-build/*
-!build/.gitkeep
+build/
+.build/
 
 # nix stuff
 /.nix

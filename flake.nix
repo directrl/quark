@@ -14,11 +14,16 @@
 				] (system: function nixpkgs.legacyPackages.${system});
 		in {
 			devShell = universal (pkgs: 
-				(pkgs.mkShell.override { stdenv = pkgs.clangMultiStdenv; } rec {
+				(pkgs.mkShell.override { stdenv = pkgs.llvmPackages_19.libcxxStdenv; } rec {
 					name = "quark";
 
 					llvm = "llvmPackages_19";
 					clang-tools = pkgs."${llvm}".clang-tools;
+
+					# python for glad binding generation
+					python = (pkgs.python312.withPackages (python-pkgs: [
+						python-pkgs.jinja2
+					]));
 
 					libs = with pkgs; [
 						freetype
@@ -36,7 +41,10 @@
 						libXinerama
 						libXtst
 						libXxf86vm
-					]);
+					]) ++ [
+						python
+						pkgs."${llvm}".libcxx
+					];
 
 					LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libs;
 					buildInputs = libs;
@@ -52,6 +60,7 @@
 					] ++ [
 						pkgs."${llvm}".clang
 						clang-tools
+						python
 					];
 
 					shellHook = ''
