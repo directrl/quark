@@ -28,7 +28,7 @@ jobs:
           -DCMAKE_C_COMPILER=clang
           -S ${{ github.workspace }}
       - name: Build project
-        run: cmake --build "${{ github.workspace }}/build/debug" -v
+        run: cmake --build "${{ github.workspace }}/.build/debug" -v
   # build-macos:
   #   runs-on: macos-latest
   #   steps:
