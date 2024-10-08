@@ -1,0 +1,66 @@
+# CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+CMakeUserPresets.json
+
+# KDevelop
+*.kdev4
+/.kdev4
+
+# Visual Studio Code
+/.vscode
+
+# JetBrains IDEs
+/.idea
+*.iml
+cmake-build-*/
+
+# Visual Studio
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+.vs/
+publish/
+
+# build directory
+build/*
+!build/.gitkeep
+
+# nix stuff
+/.nix
+/.nix-profile
+/.profile
+
+# windows stuff
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macos stuff
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
