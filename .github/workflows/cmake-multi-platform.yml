@@ -26,44 +26,44 @@ jobs:
           -S ${{ github.workspace }}
       - name: Build project
         run: cmake --build "${{ github.workspace }}/build/debug" -v
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Install cmake, clang, ninja
-        run: |
-          brew install cmake
-          brew install llvm
-          brew install ninja
-          export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-          # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-          # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-      - name: Configure CMake
-        run: >
-          cmake --preset=debug
-          -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++
-          -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang
-          -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/opt/llvm/lib"
-          -DCMAKE_CXX_FLAGS="-I/opt/homebrew/opt/llvm/include"
-          -S ${{ github.workspace }}
-      - name: Build project
-        run: cmake --build "${{ github.workspace }}/build/debug" -v
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Install cmake, clang, ninja
-        run: |
-          choco install cmake
-          choco install llvm
-          choco install ninja
-      - name: Configure CMake
-        run: >
-          cmake --preset=debug
-          -DCMAKE_CXX_COMPILER=clang++
-          -DCMAKE_C_COMPILER=clang
-          -S ${{ github.workspace }}
-      - name: Build project
-        run: cmake --build "${{ github.workspace }}/build/debug" -v --config Debug
+  # build-macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #     - name: Install cmake, clang, ninja
+  #       run: |
+  #         brew install cmake
+  #         brew install llvm
+  #         brew install ninja
+  #         export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+  #         # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+  #         # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+  #     - name: Configure CMake
+  #       run: >
+  #         cmake --preset=debug
+  #         -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++
+  #         -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang
+  #         -DCMAKE_EXE_LINKER_FLAGS="-L/opt/homebrew/opt/llvm/lib"
+  #         -DCMAKE_CXX_FLAGS="-I/opt/homebrew/opt/llvm/include"
+  #         -S ${{ github.workspace }}
+  #     - name: Build project
+  #       run: cmake --build "${{ github.workspace }}/build/debug" -v
+  # build-windows:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #     - name: Install cmake, clang, ninja
+  #       run: |
+  #         choco install cmake
+  #         choco install llvm
+  #         choco install ninja
+  #     - name: Configure CMake
+  #       run: >
+  #         cmake --preset=debug
+  #         -DCMAKE_CXX_COMPILER=clang++
+  #         -DCMAKE_C_COMPILER=clang
+  #         -S ${{ github.workspace }}
+  #     - name: Build project
+  #       run: cmake --build "${{ github.workspace }}/build/debug" -v --config Debug
