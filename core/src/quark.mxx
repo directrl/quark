@@ -1,0 +1,66 @@
+module;
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
+#include <string>
+
+export module quark;
+
+export namespace quark {
+	
+	class Quark {
+	public:
+		std::string id;
+		
+		Quark(const std::string& id) : id(id) { }
+		
+		int start(int argc, char* argv[]) {
+			if(!glfwInit()) {
+				printf("Could not initialize GLFW\n");
+				return 1;
+			}
+			
+			glfwSetErrorCallback([](int error, const char* description) {
+				printf("GLFW ERROR %d: %s\n", error, description);
+			});
+			
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+			
+			auto* window = glfwCreateWindow(512, 512, id.c_str(), nullptr, nullptr);
+			if(window == nullptr) {
+				printf("Unable to create a GLFW window\n");
+				glfwTerminate();
+				return 2;
+			}
+			
+			glfwMakeContextCurrent(window);
+			
+			auto* gl = static_cast<GladGLContext*>(std::calloc(1, sizeof(GladGLContext)));
+			if(!gl) {
+				printf("Could not create an OpenGL context");
+				delete gl;
+				return 3;
+			}
+			
+			int glVersion = gladLoadGLContext(gl, glfwGetProcAddress);
+			printf("Loaded OpenGL version %d.%d",
+				GLAD_VERSION_MAJOR(glVersion),
+				GLAD_VERSION_MINOR(glVersion));
+			
+			while(!glfwWindowShouldClose(window)) {
+				glfwPollEvents();
+				
+				gl->ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+				gl->Clear(GL_COLOR_BUFFER_BIT);
+				
+				glfwSwapBuffers(window);
+			}
+			
+			delete gl;
+			glfwTerminate();
+			return 0;
+		}
+	};
+}
