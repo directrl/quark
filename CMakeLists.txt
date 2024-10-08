@@ -51,6 +51,14 @@ add_compile_definitions(BUILD_DATE=${CURRENT_DATE})
 add_compile_definitions(BUILD_TIME=${CURRENT_TIME})
 add_compile_definitions(BUILD_REVISION=${GIT_REVISION})
 
+if(UNIX AND NOT APPLE)
+	add_compile_definitions(LINUX)
+elseif(APPLE)
+	add_compile_definitions(APPLE)
+elseif(WIN32 OR MSVC OR MSYS OR MINGW)
+	add_compile_definitions(WINDOWS)
+endif()
+
 # global compilation flags
 add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-fstack-protector>")
 
