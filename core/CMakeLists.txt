@@ -29,9 +29,11 @@ target_include_directories(${PROJECT_NAME}
 # dependencies
 include(${COMMON_LIBRARY_DIRECTORY}/glfw.cmake)
 include(${COMMON_LIBRARY_DIRECTORY}/glad.cmake)
+include(${COMMON_LIBRARY_DIRECTORY}/quill.cmake)
 
 glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
 	glfw
-	glad_gl_core_mx_33)
+	glad_gl_core_mx_33
+	quill::quill)

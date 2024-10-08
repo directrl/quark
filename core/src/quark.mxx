@@ -2,6 +2,11 @@ module;
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include <string>
+#include <quill/Backend.h>
+#include <quill/Frontend.h>
+#include <quill/Logger.h>
+#include <quill/sinks/ConsoleSink.h>
+#include <quill/LogMacros.h>
 
 export module quark;
 
@@ -14,8 +19,14 @@ export namespace quark {
 		Quark(const std::string& id) : id(id) { }
 		
 		int start(int argc, char* argv[]) {
+			quill::Backend::start({ });
+			
+			auto console_sink = quill::Frontend::create_or_get_sink<quill::ConsoleSink>("sink_1");
+			auto* logger = quill::Frontend::create_or_get_logger("root", console_sink);
+			logger->set_log_level(quill::LogLevel::Debug);
+			
 			if(!glfwInit()) {
-				printf("Could not initialize GLFW\n");
+				LOG_ERROR(logger, "Could not initialize GLFW");
 				return 1;
 			}
 			
@@ -30,7 +41,7 @@ export namespace quark {
 			
 			auto* window = glfwCreateWindow(512, 512, id.c_str(), nullptr, nullptr);
 			if(window == nullptr) {
-				printf("Unable to create a GLFW window\n");
+				LOG_ERROR(logger, "Unable to create a GLFW window");
 				glfwTerminate();
 				return 2;
 			}
@@ -39,13 +50,13 @@ export namespace quark {
 			
 			auto* gl = static_cast<GladGLContext*>(std::calloc(1, sizeof(GladGLContext)));
 			if(!gl) {
-				printf("Could not create an OpenGL context");
+				LOG_ERROR(logger, "Could not initialize memory for the OpenGL context");
 				delete gl;
 				return 3;
 			}
 			
 			int glVersion = gladLoadGLContext(gl, glfwGetProcAddress);
-			printf("Loaded OpenGL version %d.%d",
+			LOG_INFO(logger, "Loaded OpenGL version {}.{}",
 				GLAD_VERSION_MAJOR(glVersion),
 				GLAD_VERSION_MINOR(glVersion));
 			
