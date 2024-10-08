@@ -18,6 +18,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install cmake clang-18 clang-tools-18 ninja-build
+          sudo apt-get build-dep glfw3
+          sudo apt-get install xorg-dev python3 python3-jinja2 jinja2
       - name: Configure CMake
         run: >
           cmake --preset=debug
