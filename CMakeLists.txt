@@ -84,6 +84,10 @@ if(BUILD_CORE)
 	add_subdirectory(core)
 endif()
 
+#if(BUILD_RENDER)
+#	add_subdirectory(render)
+#endif()
+
 if(BUILD_TESTS)
 	add_subdirectory(tests)
 endif()
