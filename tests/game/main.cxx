@@ -1,6 +1,8 @@
-import quark;
+import game;
+
+using namespace game;
 
 int main(int argc, char** argv) {
-	quark::Quark q("game");
-	return q.start(argc, argv);
+	Game game;
+	return game.start(argc, argv);
 }

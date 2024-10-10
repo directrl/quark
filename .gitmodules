@@ -5,3 +5,12 @@
 	path = common/lib/glad
 	url = https://github.com/Dav1dde/glad
 	branch = glad2
+[submodule "common/lib/quill"]
+	path = common/lib/quill
+	url = https://github.com/odygrd/quill
+[submodule "common/lib/argparse"]
+	path = common/lib/argparse
+	url = https://github.com/p-ranav/argparse
+[submodule "common/lib/glm"]
+	path = common/lib/glm
+	url = https://github.com/g-truc/glm

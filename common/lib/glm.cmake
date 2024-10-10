@@ -1,0 +1,5 @@
+set(GLM_ROOT ${CMAKE_CURRENT_LIST_DIR}/glm)
+
+set(GLM_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+
+add_subdirectory(${GLM_ROOT} ${BUILD_DIRECTORY}/glm)
