@@ -15,5 +15,5 @@ add_modules(${PROJECT_NAME}
 
 add_sources(${PROJECT_NAME}
 	src/quark.cxx
-	src/render/window.cxx
+	#src/render/window.cxx
 )
