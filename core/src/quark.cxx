@@ -66,11 +66,11 @@ namespace quark {
 		init();
 		assert(windows.size() > 0);
 
-		auto primaryWindow = windows[0];
+		const auto& primaryWindow = windows[0];
 		while(!glfwWindowShouldClose(primaryWindow->handle) && running) {
 			delta_clock.start();
 
-			for(auto window : windows) {
+			for(const auto& window : windows) {
 				window->begin();
 				window->scene.update(delta_clock.get_delta_time());
 				window->scene.render(window->get_id(), window->gl);

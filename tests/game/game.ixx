@@ -14,7 +14,7 @@ export namespace game {
 		Game() : Quark("game") { }
 
 		void init() override {
-			auto window = std::make_shared<quark::render::Window>();
+			auto window = std::make_unique<quark::render::Window>();
 
 			if(!window->create()) {
 				throw std::runtime_error("Failed to create window");
@@ -24,10 +24,10 @@ export namespace game {
 			window->set_size(1280, 720);
 			window->show();
 
-			scenes::HelloScene hello;
+			scenes::HelloScene hello { };
 			window->scene = static_cast<quark::render::Scene>(hello);
 
-			windows.push_back(window);
+			windows.push_back(std::move(window));
 		}
 
 		void update() override { }

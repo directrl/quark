@@ -25,7 +25,7 @@ export namespace quark {
 		bool running = false;
 
 		utility::DeltaClock delta_clock;
-		std::vector<std::shared_ptr<render::Window>> windows;
+		std::vector<std::unique_ptr<render::Window>> windows;
 
 		Quark(const std::string& id);
 		virtual ~Quark();
