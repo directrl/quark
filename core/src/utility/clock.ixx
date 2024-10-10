@@ -18,7 +18,7 @@ export namespace quark::utility {
 
 		void end() {
 			auto elapsed = system_clock::now() - start_point;
-			delta_time = duration<float>(duration_cast<milliseconds>(elapsed)).count();
+			delta_time = duration<float>(elapsed * 1000).count();
 		}
 
 		float get_delta_time() const { return delta_time; }
