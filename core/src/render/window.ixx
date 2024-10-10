@@ -25,7 +25,7 @@ namespace quark::render {
 		GLFWwindow* handle = nullptr;
 		GladGLContext* gl = nullptr;
 
-		Scene scene;
+		std::unique_ptr<Scene> scene = nullptr;
 
 		Window();
 		~Window();

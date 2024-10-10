@@ -1,8 +1,10 @@
 module;
 #include <glad/gl.h>
+#include <quill/LogMacros.h>
 
 export module game.scenes:hello;
 import quark.render;
+import quark.log;
 
 export namespace game::scenes {
 
@@ -13,7 +15,7 @@ export namespace game::scenes {
 		}
 
 		void render(int windowId, GladGLContext* gl) override {
-
+			LOG_DEBUG(quark::log::PROGRAM_LOGGER, "meow");
 		}
 	};
 }

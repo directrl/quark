@@ -24,8 +24,8 @@ export namespace game {
 			window->set_size(1280, 720);
 			window->show();
 
-			scenes::HelloScene hello { };
-			window->scene = static_cast<quark::render::Scene>(hello);
+			auto hello = std::unique_ptr<quark::render::Scene>(new scenes::HelloScene);
+			window->scene = std::move(hello);
 
 			windows.push_back(std::move(window));
 		}

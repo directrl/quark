@@ -72,8 +72,12 @@ namespace quark {
 
 			for(const auto& window : windows) {
 				window->begin();
-				window->scene.update(delta_clock.get_delta_time());
-				window->scene.render(window->get_id(), window->gl);
+
+				if(window->scene != nullptr) {
+					window->scene->update(delta_clock.get_delta_time());
+					window->scene->render(window->get_id(), window->gl);
+				}
+
 				window->end();
 			}
 
