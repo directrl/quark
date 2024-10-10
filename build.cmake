@@ -17,7 +17,6 @@ endif()
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE})
 add_library(quark::core ALIAS ${PROJECT_NAME})
 
-include(build.cmake)
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(${PROJECT_NAME}
@@ -30,15 +29,29 @@ target_include_directories(${PROJECT_NAME}
 include(${COMMON_LIBRARY_DIRECTORY}/glfw.cmake)
 include(${COMMON_LIBRARY_DIRECTORY}/quill.cmake)
 include(${COMMON_LIBRARY_DIRECTORY}/argparse.cmake)
-include(${COMMON_LIBRARY_DIRECTORY}/glm.cmake)
-include(${COMMON_LIBRARY_DIRECTORY}/glad.cmake)
 
-glad_add_library(glad_gl_core_mx_33 REPRODUCIBLE MX API gl:core=3.3)
+if(BUILD_GRAPHICS)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC QUARK_GRAPHICS)
+	include(graphics/build.cmake)
+endif()
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
 	glfw
 	quill::quill
 	argparse::argparse
-	glm::glm
-	glad_gl_core_mx_33
+)
+
+add_modules(${PROJECT_NAME}
+	src/quark.ixx
+	src/log/module.ixx
+	src/log/loggers.ixx
+	src/config/module.ixx
+	src/config/os.ixx
+	src/config/directories.ixx
+	src/utility/module.ixx
+	src/utility/clock.ixx
+)
+
+add_sources(${PROJECT_NAME}
+	src/quark.cxx
 )

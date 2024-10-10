@@ -6,9 +6,11 @@ module;
 #include <quill/LogMacros.h>
 #include <argparse/argparse.hpp>
 
-namespace quark::render {
+#ifdef QUARK_GRAPHICS
+namespace quark::graphics {
 	class Window;
 }
+#endif
 
 export module quark;
 import quark.config;
@@ -25,7 +27,10 @@ export namespace quark {
 		bool running = false;
 
 		utility::DeltaClock delta_clock;
-		std::vector<std::unique_ptr<render::Window>> windows;
+
+	#ifdef QUARK_GRAPHICS
+		std::vector<std::unique_ptr<graphics::Window>> windows;
+	#endif
 
 		Quark(const std::string& id);
 		virtual ~Quark();

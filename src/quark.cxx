@@ -7,7 +7,10 @@ module;
 #include <GLFW/glfw3.h>
 
 module quark;
-import quark.render;
+
+#ifdef QUARK_GRAPHICS
+import quark.graphics;
+#endif
 
 namespace quark {
 
@@ -59,11 +62,15 @@ namespace quark {
 		LOG_INFO(log::ENGINE_LOGGER, "Hello!");
 		running = true;
 
+	#ifdef QUARK_GRAPHICS
 		if(!glfwInit()) {
 			throw new std::runtime_error("Failed to initialize GLFW");
 		}
+	#endif
 
 		init();
+
+	#ifdef QUARK_GRAPHICS
 		assert(windows.size() > 0);
 
 		const auto& primaryWindow = windows[0];
@@ -85,5 +92,6 @@ namespace quark {
 		}
 
 		return 0;
+	#endif
 	}
 }

@@ -1,9 +1,9 @@
 module;
 #include <glad/gl.h>
 
-export module quark.render:scene;
+export module quark.graphics:scene;
 
-export namespace quark::render {
+export namespace quark::graphics {
 
 	class Scene {
 	public:

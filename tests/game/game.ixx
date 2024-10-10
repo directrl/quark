@@ -4,7 +4,7 @@ module;
 
 export module game;
 import quark;
-import quark.render;
+import quark.graphics;
 import game.scenes;
 
 export namespace game {
@@ -14,7 +14,7 @@ export namespace game {
 		Game() : Quark("game") { }
 
 		void init() override {
-			auto window = std::make_unique<quark::render::Window>();
+			auto window = std::make_unique<quark::graphics::Window>();
 
 			if(!window->create()) {
 				throw std::runtime_error("Failed to create window");
@@ -24,7 +24,7 @@ export namespace game {
 			window->set_size(1280, 720);
 			window->show();
 
-			auto hello = std::unique_ptr<quark::render::Scene>(new scenes::HelloScene);
+			auto hello = std::unique_ptr<quark::graphics::Scene>(new scenes::HelloScene);
 			window->scene = std::move(hello);
 
 			windows.push_back(std::move(window));

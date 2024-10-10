@@ -81,12 +81,8 @@ endif()
 include(options.cmake)
 
 if(BUILD_CORE)
-	add_subdirectory(core)
+	include(build.cmake)
 endif()
-
-#if(BUILD_RENDER)
-#	add_subdirectory(render)
-#endif()
 
 if(BUILD_TESTS)
 	add_subdirectory(tests)

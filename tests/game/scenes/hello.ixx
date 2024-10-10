@@ -3,12 +3,12 @@ module;
 #include <quill/LogMacros.h>
 
 export module game.scenes:hello;
-import quark.render;
+import quark.graphics;
 import quark.log;
 
 export namespace game::scenes {
 
-	class HelloScene : public quark::render::Scene {
+	class HelloScene : public quark::graphics::Scene {
 	public:
 		void update(float delta) override {
 

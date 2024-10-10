@@ -5,12 +5,11 @@ module;
 #include <glm/glm.hpp>
 #include <string>
 
-export module quark.render:window;
-import quark.config;
+export module quark.graphics:window;
 import :gl;
 import :scene;
 
-namespace quark::render {
+namespace quark::graphics {
 
 	GLFWwindow* SHARED_CONTEXT = nullptr;
 	int WINDOW_LAST_ID = -1;
@@ -45,7 +44,7 @@ namespace quark::render {
 			handle = glfwCreateWindow(
 				640,
 				480,
-				config::BASENAME.c_str(),
+				"Window",
 				monitor,
 				SHARED_CONTEXT
 			);
