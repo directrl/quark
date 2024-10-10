@@ -4,6 +4,6 @@ add_sources(${TEST_NAME}
 
 add_modules(${TEST_NAME}
 	game.ixx
-	scenes/module.mxx
+	scenes/module.ixx
 	scenes/hello.ixx
 )
